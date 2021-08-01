@@ -12,7 +12,7 @@ export interface ATMState {
 
 const initialState: ATMState = {
   notes: [5, 10, 20],
-  noteCounts: [10, 10, 10],
+  noteCounts: [4, 15, 7],
   noteOuts: [0, 0, 0],
   status: "idle",
 };
