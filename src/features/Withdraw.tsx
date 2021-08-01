@@ -38,14 +38,21 @@ const Withdraw = () => {
 
   const isOverdraft = value > user.balance;
   const isOverLimit = value - user.balance > LIMIT_OVERDRAFT;
+
+  const isSuccessWithdraw = atm.noteOuts.filter((note) => note > 0).length > 0;
   const message = `You got ${atm.notes
     .map((note, i) => `${note}£x${atm.noteOuts[i]}`)
     .join(" ")}`;
+  const errorMessage = `Out of notes`;
 
   return (
     <Wrapper>
       <Snackbar open={open}>
-        <Alert severity="success">{message}</Alert>
+        {isSuccessWithdraw ? (
+          <Alert severity="success">{message}</Alert>
+        ) : (
+          <Alert severity="error">{errorMessage}</Alert>
+        )}
       </Snackbar>
       <h1>Your balance is {user.balance}</h1>
       <TextField label="Amount" value={value} />
