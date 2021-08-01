@@ -74,5 +74,23 @@ describe("TEST ATM Reducer", () => {
         status: "idle",
       });
     });
+
+    it("should not withdraw, when notes is not enough by not having 5", () => {
+      const initialState: ATMState = {
+        notes: [5, 10, 20],
+        noteCounts: [0, 5, 5],
+        noteOuts: [0, 0, 0],
+        status: "idle",
+      };
+
+      const actual = ATMReducer(initialState, withdraw(105));
+
+      expect(actual).toEqual({
+        notes: [5, 10, 20],
+        noteCounts: [0, 5, 5],
+        noteOuts: [0, 0, 0],
+        status: "idle",
+      });
+    });
   });
 });
